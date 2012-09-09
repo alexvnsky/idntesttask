@@ -48,7 +48,11 @@
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
-
+    <?php
+    //if this is Home Page
+    if (Yii::app()->controller->route == 'post/index')
+        $this->widget('application.modules.chat.components.ChatWidget');
+    ?>
 </div><!-- page -->
 
 </body>
