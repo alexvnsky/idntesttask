@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.modules.chat.models.*',
 	),
 
 	'defaultController'=>'post',
@@ -46,6 +47,9 @@ return array(
         'urlManager'=>array(
         	'urlFormat'=>'path',
         	'rules'=>array(
+                'gii'=>'gii',
+                'gii/<controller:\w+>'=>'gii/<controller>',
+                'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
         		'post/<id:\d+>/<title:.*?>'=>'post/view',
         		'posts/<tag:.*?>'=>'post/index',
         		'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
@@ -67,6 +71,13 @@ return array(
 			),
 		),
 	),
+    'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'admin',
+        ),
+        'chat',
+    ),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
