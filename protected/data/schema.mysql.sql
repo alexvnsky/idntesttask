@@ -52,6 +52,18 @@ CREATE TABLE tbl_tag
 	frequency INTEGER DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS tbl_chat (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  create_date timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  user_id int(11) DEFAULT NULL,
+  message varchar(100) NOT NULL,
+  PRIMARY KEY (id),
+  KEY FK_chat_author (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+ALTER TABLE tbl_chat
+  ADD CONSTRAINT tbl_chat_ibfk_1 FOREIGN KEY (user_id) REFERENCES tbl_user (id) ON DELETE CASCADE ON UPDATE RESTRICT;
+
 INSERT INTO tbl_lookup (name, type, code, position) VALUES ('Draft', 'PostStatus', 1, 1);
 INSERT INTO tbl_lookup (name, type, code, position) VALUES ('Published', 'PostStatus', 2, 2);
 INSERT INTO tbl_lookup (name, type, code, position) VALUES ('Archived', 'PostStatus', 3, 3);
