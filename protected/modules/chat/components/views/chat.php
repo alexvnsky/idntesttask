@@ -7,6 +7,24 @@
 ?>
 <script>
     $(document).ready(function() {
+
+        var element = $('#chat-content').jScrollPane();
+        var apiJsp = element.data('jsp');
+
+        window.getChats = function(callback){
+            if($('#chat-toogle-btn').hasClass('active')){
+                window.getMessages();
+            }
+            //Set a timeout for the next request
+            var nextRequest = 5000;
+            setTimeout(callback,nextRequest);
+        };
+
+        //Self-fulfilling timeout function
+        (function getChatsTimeoutFunction(){
+            window.getChats(getChatsTimeoutFunction);
+        })();
+
         $('#chat-toogle-btn').click(function() {
             $(this).toggleClass("active");
             if($('#chat-toogle-btn').hasClass('active')){
@@ -33,12 +51,15 @@
                 },
                 success:function(data){
                     if (data.status == 'success'){
-                         $('#chat-data').html(data.content);
+                        apiJsp.getContentPane().html(data.content);
+                        apiJsp.reinitialise();
+                        apiJsp.scrollToBottom();
                     } else
                         $('#chat-data').html('<?php echo Yii::t('app', 'Error loading chat');?>');
                 }
             });
-        }
+        };
+
     });
 </script>
 <div id="chat-block">

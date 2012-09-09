@@ -19,6 +19,11 @@ class ChatWidget extends CWidget{
      * CSS file. If this is set false, you are responsible to explicitly include the necessary CSS file in your page.
      */
     public $cssFile;
+    /**
+     * @var bool
+     * If this is set false, JScrollPane plugin will not be included
+     */
+    public $registerJScrollPane = true;
 
     /**
      * Initializes the chat.
@@ -36,6 +41,11 @@ class ChatWidget extends CWidget{
                 $this->cssFile=$this->baseScriptUrl.'/chat.css';
             Yii::app()->getClientScript()->registerCssFile($this->cssFile);
         }
+
+        if($this->registerJScrollPane){
+            //Register jScrollPane plugin default css
+            Yii::app()->getClientScript()->registerCssFile($this->baseScriptUrl.'/jScrollPane/jScrollPane.css');
+        }
     }
 
     /**
@@ -47,6 +57,13 @@ class ChatWidget extends CWidget{
         $cs=Yii::app()->getClientScript();
         $cs->registerCoreScript('jquery');
         $cs->registerScriptFile($this->baseScriptUrl.'/chat.js',CClientScript::POS_END);
+
+        if($this->registerJScrollPane){
+            //Register jScrollPane plugin js
+            $cs->registerScriptFile($this->baseScriptUrl.'/jScrollPane/jScrollPane.min.js');
+            $cs->registerScriptFile($this->baseScriptUrl.'/jScrollPane/jquery.mousewheel.js');
+        }
+
     }
 
     public function run(){
