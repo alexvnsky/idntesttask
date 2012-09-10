@@ -66,3 +66,29 @@ Finally add chat to your view template:
 ~~~php
 <?php $this->widget('application.modules.chat.components.ChatWidget'); ?>
 ~~~
+
+Properties
+----------
+
+Defined by ChatWidget
+* baseScriptUrl
+    @var string
+    The base script URL for all list view resources (e.g. javascript, CSS file).
+    Defaults to null, meaning using the integrated list view resources (which are published as assets).
+* cssFile
+    @var string
+    The URL of the CSS file used by this list view. Defaults to null, meaning using the integrated
+    CSS file. If this is set false, you are responsible to explicitly include the necessary CSS file in your page.
+* registerJScrollPane
+    @var bool
+    If this is set false, JScrollPane plugin will not be included
+* updateTime
+    @var int
+    refresh messages time in milisec.
+* options
+    @var array
+    an array with options for extension.
+    array(
+        'getMessagesUrl' => ... , //getMessages Action URL
+        'addMessageUrl' =>  ... //addMessage Action URL
+    )

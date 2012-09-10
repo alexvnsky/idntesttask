@@ -26,7 +26,7 @@ var chat = {
     getMessagesUrl: null,
 
     /**
-     * @var string refresh Counter All Conditions Action URL
+     * @var string addMessage Action URL
      */
     addMessageUrl: null,
 
