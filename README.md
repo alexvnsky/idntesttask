@@ -71,24 +71,46 @@ Properties
 ----------
 
 Defined by ChatWidget
-* baseScriptUrl
+
+* ### baseScriptUrl
+
     @var string
+    
     The base script URL for all list view resources (e.g. javascript, CSS file).
+    
     Defaults to null, meaning using the integrated list view resources (which are published as assets).
-* cssFile
+    
+* ### cssFile
+
     @var string
+    
     The URL of the CSS file used by this list view. Defaults to null, meaning using the integrated
+    
     CSS file. If this is set false, you are responsible to explicitly include the necessary CSS file in your page.
-* registerJScrollPane
+    
+* ### registerJScrollPane
+
     @var bool
+    
     If this is set false, JScrollPane plugin will not be included
-* updateTime
+    
+* ### updateTime
+
     @var int
+    
     refresh messages time in milisec.
-* options
+    
+* ### options
+
     @var array
+    
     an array with options for extension.
+    
+~~~php
+    <?php
     array(
         'getMessagesUrl' => ... , //getMessages Action URL
         'addMessageUrl' =>  ... //addMessage Action URL
     )
+    ?>
+~~~
